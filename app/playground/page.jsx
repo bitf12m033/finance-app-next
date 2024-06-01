@@ -8,6 +8,10 @@ import Skeleton from "@/components/skeleton/skeleton"
 import TransactionItem from "@/components/transactionItem/transactionItem"
 import TransactionSummaryItem from "@/components/transactionSummaryItem/transactionSummaryItem"
 import Trend from "@/components/trend/trend"
+
+export const metadata = {
+  title: "Playground"
+}
 const PlaygroundPage = () => {
   return (
     <main className="space-y-8 mb-44">
