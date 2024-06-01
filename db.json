@@ -33,28 +33,12 @@
       "created_at": "2024-05-10T23:00:00"
     },
     {
-      "id": "ced4",
+      "id": "bfc4",
       "type": "Expense",
       "category": "Health",
-      "amount": 900,
-      "description": "pay",
-      "created_at": "2/26/24T00:00:00"
-    },
-    {
-      "id": "39f9",
-      "type": "Expense",
-      "category": "Health",
-      "amount": 900,
-      "description": "pay",
-      "created_at": "2/26/24T00:00:00"
-    },
-    {
-      "id": "229c",
-      "type": "Expense",
-      "category": "Health",
-      "amount": 900,
-      "description": "pay",
-      "created_at": "2/26/24T00:00:00"
+      "amount": 233,
+      "description": "3333",
+      "created_at": "2024-02-01T00:00:00"
     }
   ],
   "trends": [
