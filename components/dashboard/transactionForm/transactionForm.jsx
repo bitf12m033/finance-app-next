@@ -54,9 +54,7 @@ export default function TransactionForm() {
 
       <div className="col-span-1 md:col-span-2">
         <Label className="mb-1">Description</Label>
-        <Input {...register("description", {
-          required: "The description is required"
-        })} />
+        <Input {...register("description")} />
         {errors.description && <p className="mt-1 text-red-500">{errors.description.message}</p>}      </div>
     </div>
 
