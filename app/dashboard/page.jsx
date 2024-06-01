@@ -1,9 +1,12 @@
+import TransactionListFallback from '@/components/dashboard/transactionListFallback/transactionListFallback'
 import TransactionList from '@/components/transactionList/transactionList'
-import React from 'react'
+import React, { Suspense } from 'react'
 
 const DashboardPage = () => {
   return (
-   <TransactionList />
+    <Suspense fallback={<TransactionListFallback />}>
+      <TransactionList />
+    </Suspense>
   )
 }
 
