@@ -1,8 +1,9 @@
+import TransactionList from '@/components/transactionList/transactionList'
 import React from 'react'
 
 const DashboardPage = () => {
   return (
-    <div>DashboardPage</div>
+   <TransactionList />
   )
 }
 
