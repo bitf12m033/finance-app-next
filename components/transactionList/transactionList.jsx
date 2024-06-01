@@ -1,3 +1,4 @@
+import Separator from "../separator/separator"
 import TransactionItem from "../transactionItem/transactionItem"
 import TransactionSummaryItem from "../transactionSummaryItem/transactionSummaryItem"
 
@@ -32,7 +33,7 @@ export default async function TransactionList() {
                     return (
                         <div key={date}>
                             <TransactionSummaryItem date={date} amount={amount} />
-                            <hr className="my-4 border-gray-200 dark:border-gray-800" />
+                           <Separator/>
                             <section className="space-y-4">
                             {transactions.map(transaction => <div key={transaction.id}>
                                 <TransactionItem {...transaction} />
