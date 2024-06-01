@@ -19,8 +19,10 @@ export default function TransactionForm() {
         resolver: zodResolver(transactionSchema),
       })
     
-    const onSubmit = (data) => console.log(data)
-    
+      const onSubmit = (data) => {
+        console.log(data)
+        console.log(process.env.NEXT_PUBLIC_API_URL)
+      }    
 
     return <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
