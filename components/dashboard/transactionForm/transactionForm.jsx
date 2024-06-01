@@ -6,6 +6,8 @@ import Label from "@/components/label/label";
 import Select from "@/components/select/select";
 import { categories, types } from "@/lib/consts";
 import { useForm } from "react-hook-form";
+import { transactionSchema } from "@/lib/validation";
+import { zodResolver } from "@hookform/resolvers/zod";
 export default function TransactionForm() {
     const {
         register,
@@ -13,7 +15,8 @@ export default function TransactionForm() {
         watch,
         formState: { errors },
       } = useForm({
-        mode: "onTouched"
+        mode: "onTouched",
+        resolver: zodResolver(transactionSchema),
       })
     
     const onSubmit = (data) => console.log(data)
@@ -37,19 +40,13 @@ export default function TransactionForm() {
 
       <div>
         <Label className="mb-1">Date</Label>
-        <Input {...register("created_at", {
-          required: "The date is required"
-        })} />
+        <Input {...register("created_at")} />
         {errors.created_at && <p className="mt-1 text-red-500">{errors.created_at.message}</p>}
       </div>
 
       <div>
         <Label className="mb-1">Amount</Label>
-        <Input type="number" {...register("amount", {
-          required: "The amount is required",
-          valueAsNumber: true,
-          min: {value: 1, message: "Amount must be at least 1"}
-        })} />
+        <Input type="number" {...register("amount")} />
         {errors.amount && <p className="mt-1 text-red-500">{errors.amount.message}</p>}      </div>
 
       <div className="col-span-1 md:col-span-2">
