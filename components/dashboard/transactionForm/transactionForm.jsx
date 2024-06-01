@@ -8,6 +8,8 @@ import { categories, types } from "@/lib/consts";
 import { useForm } from "react-hook-form";
 import { transactionSchema } from "@/lib/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
+
 export default function TransactionForm() {
     const {
         register,
@@ -19,10 +21,25 @@ export default function TransactionForm() {
         resolver: zodResolver(transactionSchema),
       })
     
-      const onSubmit = (data) => {
-        console.log(data)
-        console.log(process.env.NEXT_PUBLIC_API_URL)
-      }    
+    const [isSaving, setSaving] = useState(false)
+
+    const onSubmit = async (data) => {
+        setSaving(true)
+        try {
+            await fetch(`${process.env.NEXT_PUBLIC_API_URL}/transactions`, {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    ...data,
+                    created_at: `${data.created_at}T00:00:00`
+                })
+            })
+        } finally {
+            setSaving(false)
+        }  
+    }
 
     return <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -58,7 +75,6 @@ export default function TransactionForm() {
     </div>
 
     <div className="flex justify-end">
-      <Button type="submit">Save</Button>
-    </div>
+    <Button type="submit" disabled={isSaving}>Save</Button>    </div>
   </form>
 }
