@@ -1,3 +1,4 @@
+import { createClient } from "@/lib/supabase/server"
 import Separator from "../separator/separator"
 import TransactionItem from "../transactionItem/transactionItem"
 import TransactionSummaryItem from "../transactionSummaryItem/transactionSummaryItem"
@@ -17,10 +18,15 @@ const groupAndSumTransactionsByDate = (transactions) => {
   }
 
 export default async function TransactionList() {
-    const response = await fetch(
-      `${process.env.API_URL}/transactions`
-    )
-    const transactions = await response.json()
+    
+    const supabase = createClient()
+    const {data:transactions , error} = await supabase.from('transactions')
+    .select('*')
+    .order('created_at', { ascending: true })
+    // const response = await fetch(
+    //   `${process.env.API_URL}/transactions`
+    // )
+    // const transactions = await response.json()
   
     const grouped = groupAndSumTransactionsByDate(transactions)
 

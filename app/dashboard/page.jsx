@@ -6,8 +6,17 @@ import { PlusCircle } from 'lucide-react'
 import Link from 'next/link'
 import { Suspense } from'react'
 import { variants, sizes } from '@/lib/variants'
+import { createClient } from '@/lib/supabase/server'
 
-const DashboardPage = () => {
+
+const DashboardPage = async () => {
+
+  const client = createClient();
+  console.log('====================================');
+  // console.log(client);
+  console.log('====================================');
+
+  console.log(await client.from('transactions').select('*'));
   return (
     <>
       <section className="mb-8">
