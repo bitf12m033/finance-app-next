@@ -25,15 +25,21 @@ export default function TransactionForm() {
     
     const router = useRouter()
     const [isSaving, setSaving] = useState(false)
+    const [lastError, setLastError] = useState()
 
     const onSubmit = async (data) => {
         setSaving(true)
+        setLastError()
         try {
             
-            await createTransaction(data)
-            router.push('/dashboard')
-        } finally {
-            setSaving(false)
+          await createTransaction(data)
+          router.push('/dashboard')
+        }
+        catch (error) {
+          setLastError(error)
+        } 
+        finally {
+          setSaving(false)
         }  
     }
 
@@ -70,7 +76,10 @@ export default function TransactionForm() {
         <FormError error={ errors.description} />     </div>
     </div>
 
-    <div className="flex justify-end">
+    <div className="flex justify-between items-center">
+      <div>
+        {lastError && <FormError error={lastError} />}
+      </div>
     <Button type="submit" disabled={isSaving}>Save</Button>    </div>
   </form>
 }
