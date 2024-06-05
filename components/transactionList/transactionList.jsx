@@ -22,12 +22,8 @@ export default async function TransactionList() {
     const supabase = createClient()
     const {data:transactions , error} = await supabase.from('transactions')
     .select('*')
-    .order('created_at', { ascending: true })
-    // const response = await fetch(
-    //   `${process.env.API_URL}/transactions`
-    // )
-    // const transactions = await response.json()
-  
+    .order('created_at', { ascending: false })
+
     const grouped = groupAndSumTransactionsByDate(transactions)
 
     return (
