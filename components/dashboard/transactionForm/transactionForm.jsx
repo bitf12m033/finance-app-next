@@ -20,7 +20,7 @@ export default function TransactionForm() {
         formState: { errors },
       } = useForm({
         mode: "onTouched",
-        resolver: zodResolver(transactionSchema),
+        // resolver: zodResolver(transactionSchema),
       })
     
     const router = useRouter()
