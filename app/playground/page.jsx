@@ -67,6 +67,7 @@ const PlaygroundPage = () => {
           <Button>Hello</Button>
           <Button variant="outline">Hello</Button>
           <Button variant="ghost">Hello</Button>
+          <Button variant="danger">Hello</Button>
 
           <Button size="xs">Hello</Button>
           <Button size="sm">Hello</Button>

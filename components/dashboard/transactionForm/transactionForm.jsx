@@ -90,6 +90,6 @@ export default function TransactionForm() {
       <div>
         {lastError && <FormError error={lastError} />}
       </div>
-    <Button type="submit" disabled={isSaving}>Save</Button>    </div>
+    <Button variant="ghost" type="submit" disabled={isSaving}>Save</Button>    </div>
   </form>
 }
