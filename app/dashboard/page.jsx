@@ -11,8 +11,8 @@ import { ErrorBoundary } from 'react-error-boundary'
 import Range from '@/components/dashboard/range/range'
 
 
-const DashboardPage = async () => {
-
+const DashboardPage = async ({searchParams}) => {
+  const range = searchParams?.range ?? 'last30days'
   return (
     <>
       <section className="mb-8 flex justify-between items-center">
@@ -24,7 +24,7 @@ const DashboardPage = async () => {
       <section className="mb-8 grid grid-cols-2 lg:grid-cols-4 gap-8">
       {types.map(type => <ErrorBoundary key={type} fallback={<div className="text-red-500">Cannot fetch {type} trend data</div>}>
         <Suspense fallback={<TrendFallback />}>
-          <Trend type={type} />
+          <Trend type={type} range={range} />
         </Suspense>
       </ErrorBoundary>)}
     </section>
