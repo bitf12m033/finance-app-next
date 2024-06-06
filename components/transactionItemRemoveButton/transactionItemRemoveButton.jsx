@@ -4,7 +4,7 @@ import Button from "../button/button"
 import { useState } from "react"
 import { X, Loader } from "lucide-react"
 
-export default function TransactionItemRemoveButton({ id }) {
+export default function TransactionItemRemoveButton({ id , onRemoved }) {
     const [loading, setLoading] = useState()
     const [confirmed, setConfirmed] = useState()
     const handleClick = async () => {
@@ -16,6 +16,7 @@ export default function TransactionItemRemoveButton({ id }) {
         setLoading(true)
         await deleteTransaction(id)
         // notify the parent
+        onRemoved()
       } finally {
         setLoading(false)
       }

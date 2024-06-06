@@ -30,6 +30,9 @@ export default  function TransactionList({range , initialTransactions}) {
         setLoading(false)
         }
     }
+    const handleRemoved = (id) => () => {
+        setTransactions(prev => [...prev].filter(t => t.id !== id))
+      }
     return (
         <div className="space-y-8">
             {
@@ -40,7 +43,7 @@ export default  function TransactionList({range , initialTransactions}) {
                            <Separator/>
                             <section className="space-y-4">
                             {transactions.map(transaction => <div key={transaction.id}>
-                                <TransactionItem {...transaction} />
+                                <TransactionItem {...transaction} onRemoved={handleRemoved(transaction.id)} />
                             </div>)}
                             </section>
                         </div>
