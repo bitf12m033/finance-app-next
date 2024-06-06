@@ -10,7 +10,7 @@ import { transactionSchema } from "@/lib/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { createTransaction } from "@/lib/actions";
+import { createTransaction, updateTransaction } from "@/lib/actions";
 import FormError from "@/components/formError/formError";
 export default function TransactionForm({initialData}) {
     const {
@@ -41,7 +41,10 @@ export default function TransactionForm({initialData}) {
         try {
             
           if (editing) {
-            // Edit action
+            await updateTransaction(
+              initialData.id,
+              data
+            )
           } else {
             await createTransaction(data)
           }
