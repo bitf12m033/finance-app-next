@@ -6,6 +6,7 @@ import Button from '../button/button'
 import { CircleUser } from 'lucide-react'
 import { KeyRound } from 'lucide-react'
 import { variants, sizes } from '@/lib/variants'
+import SignOutButton from '../signoutButton/signoutButton'
 
 const Header = async ({className}) => {
   const theme = useServerDarkMode()
@@ -23,6 +24,7 @@ const Header = async ({className}) => {
           <CircleUser className="w-6 h-6" />
           <span>{user?.email}</span>  
         </Button>}
+        {user && <SignOutButton />}
         {!user && <Link href="/login" className={`${variants['ghost']} ${sizes['sm']}`}>
           <KeyRound className="w-6 h-6" />  
         </Link>}
