@@ -9,10 +9,14 @@ import { types } from '@/lib/consts'
 import { ErrorBoundary } from 'react-error-boundary'
 import Range from '@/components/dashboard/range/range'
 import TransactionListWrapper from '@/components/dashboard/transactionListWrapper/transactionListWrapper'
+import { createClient } from '@/lib/supabase/server'
 
 
 const DashboardPage = async ({searchParams}) => {
   const range = searchParams?.range ?? 'last30days'
+
+  const supabase = createClient()
+  console.log(await supabase.auth.getUser())
   return (
     <>
       <section className="mb-8 flex justify-between items-center">
