@@ -8,9 +8,6 @@ export default async function Avatar({ width = 32, height = 32 }) {
     const { data: imageData, error } = await supabase.storage
       .from('avatars')
       .createSignedUrl(user.user_metadata?.avatar, 60 * 5)
-    console.log('====================================');
-    console.log(error);
-    console.log('====================================');
     if (error) {
       return <CircleUser className="w-6 h-6" />
     }
