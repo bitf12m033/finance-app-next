@@ -7,12 +7,13 @@ import { CircleUser } from 'lucide-react'
 import { KeyRound } from 'lucide-react'
 import { variants, sizes } from '@/lib/variants'
 import SignOutButton from '../signoutButton/signoutButton'
+import Avatar from '../dashboard/settings/avatar/avatar'
 
 const Header = async ({className}) => {
   const theme = useServerDarkMode()
   const supabase = createClient()
   const { data:{user}, error} = await supabase.auth.getUser()
-  console.log(user)
+
   return (
     <header className={`flex justify-between items-center ${className}`}>
         <Link href={'/dashboard'} className='text-xl  hover:underline underline-offset-8 decoration-2'>
@@ -22,7 +23,7 @@ const Header = async ({className}) => {
            <DarkModeToggle defaultMode= {theme}/>
             
            {user && <Link href="/dashboard/settings" className={`flex items-center space-x-1 ${variants['ghost']} ${sizes['sm']}`}>
-          <CircleUser className="w-6 h-6" />
+          <Avatar />
           <span>{user?.email}</span>  
         </Link>}
         {user && <SignOutButton />}
