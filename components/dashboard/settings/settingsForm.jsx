@@ -3,6 +3,7 @@
 import AlertError from '@/components/alert/alert-error'
 import AlertSuccess from '@/components/alert/alert-success'
 import DateRangeSelect from '@/components/dateRangeSelect/dateRangeSelect'
+import FormError from '@/components/formError/formError'
 import Input from '@/components/input/input'
 import Label from '@/components/label/label'
 import SubmitButton from '@/components/submitButton/submitButton'
@@ -11,7 +12,8 @@ import { useFormState } from 'react-dom'
 
 const initialState = {
   message: '',
-  error: false
+  error: false,
+  errors:{}
 }
 
 export default function SettingsForm({ defaults }) {
@@ -22,16 +24,24 @@ export default function SettingsForm({ defaults }) {
       {state?.error && (
         <AlertError>{state?.message}</AlertError>
       )}
-      {!state?.error && state?.message.length > 0 && (
+      {!state?.error && state?.message?.length > 0 && (
         <AlertSuccess>{state?.message}</AlertSuccess>
       )}
 
       <Label htmlFor="fullName">User full name</Label>
       <Input type="text" name="fullName" id="fullName" placeholder="User full name" defaultValue={defaults?.fullName} />
-
+      {
+        state?.errors?.['fullName']?.map((error, index) => (
+          <FormError key={index} error={error} />
+        ))
+      }
       <Label htmlFor="defaultView">Default transactions view</Label>
       <DateRangeSelect name="defaultView" id="defaultView" defaultValue={defaults?.defaultView} />
-
+      {
+        state?.errors?.['defaultView']?.map((error, index) => (
+          <FormError key={index} error={error} />
+        ))
+      }
       <SubmitButton>Update Settings</SubmitButton>
     </form>
   );
