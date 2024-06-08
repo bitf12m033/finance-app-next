@@ -13,16 +13,16 @@ import { createClient } from '@/lib/supabase/server'
 
 
 const DashboardPage = async ({searchParams}) => {
-  const range = searchParams?.range ?? 'last30days'
 
   const supabase = createClient()
-  console.log(await supabase.auth.getUser())
+  const { data: { user: { user_metadata: settings } } } = await supabase.auth.getUser()
+  const range = searchParams?.range ?? settings?.defaultView ?? 'last30days'
   return (
     <>
       <section className="mb-8 flex justify-between items-center">
         <h1 className="text-4xl font-semibold">Summary</h1>
         <aside>
-          <Range />
+          <Range  defaultView={settings?.defaultView}/>
         </aside>
       </section>
       <section className="grid grid-cols-2 lg:grid-cols-4 gap-8">
